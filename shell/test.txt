@@ -1,0 +1,61 @@
+# 重新载入启动文件
+systemctl daemon-reload
+
+
+# 管理端
+systemctl enable etcd.service
+systemctl restart etcd.service
+systemctl status etcd.service
+
+systemctl enable kube-apiserver
+systemctl enable kube-scheduler
+systemctl enable kube-controller-manager
+
+systemctl restart kube-apiserver
+systemctl restart kube-controller-manager
+systemctl restart kube-scheduler
+
+systemctl status kube-apiserver 
+systemctl status kube-scheduler
+systemctl status kube-controller-manager
+
+# 管理端
+systemctl restart kube-apiserver kube-scheduler kube-controller-manager flanneld
+systemctl enable kube-apiserver kube-scheduler kube-controller-manager flanneld
+
+# 清理etcd
+systemctl stop etcd && rm -rf /var/lib/etcd/* 
+systemctl start etcd && systemctl status etcd 
+systemctl restart kube-apiserver kube-scheduler kube-controller-manager
+
+# 客户端
+systemctl enable kubelet kube-proxy flanneld
+systemctl restart kubelet kube-proxy
+systemctl status kubelet kube-proxy
+
+# 查询状态
+kubectl get namespaces
+
+# 查看授权，添加节点
+# 查看待授权服务器
+kubectl get csr
+
+# 授权服务器
+kubectl certificate approve 授权名
+
+#查看节点
+kubectl get nodes
+
+# 查看所有镜像
+kubectl get pod --all-namespaces
+
+# 查看运行 docker
+docker exec -ti 3ae50af8fcd8 /bin/sh
+
+# 创建Fluent bit 的 Service Account
+kubectl create sa logging -n kube-system
+
+# 查看详细信息
+kubectl get node -o wide
+kubectl get pod -o wide
+kubectl get svc -o wide

@@ -1,0 +1,34 @@
+# 备份etcd数据
+etcdctl backup --data-dir /var/lib/etcd/default.etcd --backup-dir /root/etcd71
+
+etcd备份
+使用etcd自带命令etcdctl进行etc备份，脚本如下：
+#!/bin/bash
+date_time=`date +%Y%m%d`
+etcdctl backup --data-dir /var/lib/etcd/default.etcd --backup-dir /root/etcd71-${date_time}.etcd
+tar cvzf etcd71-${date_time}.tar.gz etcd71-${date_time}.etcd
+
+find  /root/*.etcd -ctime +7 -exec rm -r {} \;
+find  /root/*.gz -ctime +7 -exec rm -r {} \;
+
+# 打包备份数据
+tar cvzf etcdback-
+
+恢复etcd数据
+
+# 单机运行
+etcd --data-dir=/var/lib/etcd/default.etcd --force-new-cluster &
+
+# 查看id
+etcdctl member list
+
+# 数据同步
+curl http://127.0.0.1:2379/v2/members/1c4358be138c6d94 -XPUT \
+-H "Content-Type:application/json" -d '{"peerURLs":["http://127.0.0.1:2379"]}'
+
+# 结束单机运行
+pkill -9 etcd
+
+# 重新启动服务
+systemctl restart etcd
+systemctl status etcd
