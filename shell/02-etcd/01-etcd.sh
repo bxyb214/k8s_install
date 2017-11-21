@@ -11,7 +11,6 @@ else
   echo "$ENVFILE not found!"
   exit
 fi
-scp 192.168.61.61:/etc/kubernetes/ssl/* /etc/kubernetes/ssl
 test ! -f /var/lib/etcd && mkdir -p /var/lib/etcd
 test ! -f /etc/etcd && mkdir -p /etc/etcd
 

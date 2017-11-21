@@ -30,7 +30,7 @@ docker_pkg_dir=$basedir/pkg/docker
 
 # 06. base-env
 # 当前部署的机器 IP
-CURRENT_IP=$(ip add|sed -nr 's#.*inet (.*)/24.*global (.*$)#\1#gp'|head -n 1)
+CURRENT_IP=$(ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:")
 
 # 建议用 未用的网段 来定义服务网段和 Pod 网段
 # 服务网段 (Service CIDR），部署前路由不可达，部署后集群内使用 IP:Port 可达
