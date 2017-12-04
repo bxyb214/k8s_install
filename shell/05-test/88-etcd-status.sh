@@ -3,7 +3,7 @@
 # e-mail: faer615@gmail.com
 
 # import global env
-ENVFILE=./00-env.sh
+ENVFILE=./../00-env.sh
 if [ -f $ENVFILE ];then
   . $ENVFILE
 else

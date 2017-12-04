@@ -12,9 +12,6 @@ else
   exit 
 fi
 
-# copy ssl key
-scp 192.168.61.61:/etc/kubernetes/ssl/* /etc/kubernetes/ssl/
-scp 192.168.61.61:/etc/kubernetes/token.csv /etc/kubernetes/
 # deploy
 test ! -f $flanneld_rpm_file/flannel-0.7.1-1.el7.x86_64.rpm && echo "$flanneld_rpm_file not found!" && exit 1
 yum install -y $flanneld_rpm_file/flannel-0.7.1-1.el7.x86_64.rpm
