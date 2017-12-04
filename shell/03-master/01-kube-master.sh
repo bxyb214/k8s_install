@@ -23,12 +23,7 @@ fi
 
 # create service file and config file
 test ! -f $kube_pkg_dir/config/config && echo "$kube_pkg_dir/config/config not found" && exit 1
-echo "xxxxxxxxxxx is ${CURRENT_IP}"
-echo  $kube_pkg_dir/config/config  
-sed  "s#{KUBE_APISERVER}#http\:\/\/${CURRENT_IP}\:8080#g" $kube_pkg_dir/config/config 
-echo -----------------------------------------
-echo 
-#sed  "s#{KUBE_APISERVER}#http://${CURRENT_IP}:8080#g" $kube_pkg_dir/config/config > /etc/kubernetes/config
+sed  "s#{KUBE_APISERVER}#http://${CURRENT_IP}:8080#g" $kube_pkg_dir/config/config > /etc/kubernetes/config
 for i in apiserver scheduler controller-manager;do
   test ! -f $kube_pkg_dir/config/kube-$i.service && echo "kube-$i.server not found" && exit 1 
 
