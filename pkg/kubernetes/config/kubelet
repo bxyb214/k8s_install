@@ -14,7 +14,7 @@ KUBELET_HOSTNAME="--hostname-override={CURRENT_IP}"
 KUBELET_API_SERVER="--api-servers={APISERVER_CLUSTER_IP}"
 
 # pod infrastructure container
-KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.chinadaas.com/kubernetes/pause-amd64:3.0"
+KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.cn-hangzhou.aliyuncs.com/google-containers/pause-amd64:3.0"
 
 # Add your own!
 KUBELET_ARGS="--allow-privileged=true --experimental-bootstrap-kubeconfig=/etc/kubernetes/bootstrap.kubeconfig --kubeconfig=/etc/kubernetes/kubelet.kubeconfig --require-kubeconfig --cert-dir=/etc/kubernetes/ssl --cluster_dns={CLUSTER_DNS_SVC_IP} --cluster_domain={CLUSTER_DNS_DOMAIN} --hairpin-mode promiscuous-bridge --cgroup-driver=systemd --serialize-image-pulls=false"
