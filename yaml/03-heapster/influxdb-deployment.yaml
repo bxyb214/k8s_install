@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: influxdb
-        image: registry.chinadaas.com/kubernetes/heapster-influxdb-amd64:v1.1.1 
+        image: registry.cn-hangzhou.aliyuncs.com/google-containers/heapster-influxdb-amd64:v1.1.1 
         volumeMounts:
         - mountPath: /data
           name: influxdb-storage

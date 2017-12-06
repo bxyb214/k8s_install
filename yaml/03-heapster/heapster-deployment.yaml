@@ -14,8 +14,7 @@ spec:
       serviceAccountName: heapster
       containers:
       - name: heapster
-        #image: registry.chinadaas.com/kubernetes/heapster-amd64:v1.4.0
-        image: registry.chinadaas.com/kubernetes/heapster-amd64:v1.4.2
+        image: registry.cn-hangzhou.aliyuncs.com/google-containers/heapster-amd64:v1.4.2
         imagePullPolicy: IfNotPresent
         command:
         - /heapster
