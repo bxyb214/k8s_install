@@ -1,4 +1,4 @@
-# 00 Kubernetes 1.7.5 版本环境（持续完善中）
+# 00 Kubernetes 1.8.4 版本环境（持续完善中）
 ## 系统版本及软件版本
 + CentOS Linux release 7.4.1708 (Core) 
 + 3.10.0-693.2.2.el7.x86_64
